@@ -101,9 +101,9 @@ scientific_data |>
   ) +
   scale_fill_manual(
     values = c(
-      "Higher deprivation towns" = "#D95F5F",
-      "Mid deprivation towns" = "#E6C84A",
-      "Lower deprivation towns" = "#4C9BD2"
+      "Higher deprivation towns" = "#7B7B7B",
+      "Mid deprivation towns" = "#ADADAD",
+      "Lower deprivation towns" = "#E0E0E0"
     )
   ) +
   labs(
@@ -285,8 +285,8 @@ regional_education_means |>
   scale_colour_manual(
     name = "Town income deprivation",
     values = c(
-      "Higher deprivation towns" = "#FF5151",
-      "Lower deprivation towns" = "#66B3FF"
+      "Higher deprivation towns" = "#3C3C3C",
+      "Lower deprivation towns" = "#9D9D9D"
     ),
     labels = c(
       "Higher deprivation towns" = "Higher deprivation",
@@ -296,8 +296,8 @@ regional_education_means |>
   scale_fill_manual(
     name = "Town income deprivation",
     values = c(
-      "Higher deprivation towns" = "#FF5151",
-      "Lower deprivation towns" = "#66B3FF"
+      "Higher deprivation towns" = "#3C3C3C",
+      "Lower deprivation towns" = "#9D9D9D"
     ),
     labels = c(
       "Higher deprivation towns" = "Higher deprivation",

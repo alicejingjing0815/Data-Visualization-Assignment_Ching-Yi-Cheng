@@ -338,8 +338,6 @@ regional_education_gap <- regional_education_summary |>
   )
 ```
 
-
-## Version B: Accessible / Dynamic Outlet
 ```{r}
 #Select variables
 data <- raw_data |>
@@ -564,3 +562,8 @@ regional_education |>
 ```
 
 In summary, these findings highlight the importance of examining income deprivation and educational attainment both within and across regions. Higher-deprivation towns have lower average education scores within every region, but regional deprivation shares alone do not explain differences in overall educational attainment. These patterns could guide further government investigation into local conditions, such as school resources and access to educational opportunities, that may help explain differences between regions.
+
+
+##### [AI Use Statement]
+I used ChatGPT and Perplexity to help check my R code, seek guidance on adjusting figure dimensions and borders, and explore graph types suitable for the selected variables. I reviewed the suggested options and chose the visualizations I considered most appropriate for Version A and Version B. The final visualization choices and interpretations are my own.
+
