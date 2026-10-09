@@ -1,7 +1,7 @@
 ---
 title: "Data Visualization Assignment"
 author: "Ching-Yi Cheng"
-date: October 6 2026
+date: October 9 2026
 format: 
     html:
       toc: true
@@ -68,21 +68,26 @@ scientific_data <- raw_data |>
 
 ### 1.Box plot
 Within all eight regions, median town education scores increase from higher to lower income deprivation categories. However, the score distributions overlap, indicating variation in educational attainment within each category.
+
 ```{r}
+#| label: fig-education-boxplot
+#| fig-width: 8
+#| fig-height: 11
 scientific_data |>
   ggplot(
     aes(
       x = income_flag,
-      y = education_score
+      y = education_score,
+      fill = income_flag
     )
   ) +
   geom_boxplot(
     width = 0.55,
-    fill = "grey85",
     colour = "black",
     linewidth = 0.5,
     outlier.size = 1.5,
-    outlier.alpha = 0.6
+    outlier.alpha = 0.6,
+    show.legend = FALSE
   ) +
   facet_wrap(
     vars(rgn11nm),
@@ -95,6 +100,13 @@ scientific_data |>
       "Lower deprivation towns" = "Lower"
     ),
     drop = FALSE
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Higher deprivation towns" = "#D95F5F",
+      "Mid deprivation towns" = "#E6C84A",
+      "Lower deprivation towns" = "#4C9BD2"
+    )
   ) +
   labs(
     title = "Town educational attainment by income deprivation and region",
@@ -551,4 +563,4 @@ regional_education |>
 
 ```
 
-In summary, these findings highlight the importance of examining income deprivation and educational attainment both within and across regions. Higher-deprivation towns have lower average education scores within every region, but regional deprivation shares alone do not explain differences in overall educational attainment.
+In summary, these findings highlight the importance of examining income deprivation and educational attainment both within and across regions. Higher-deprivation towns have lower average education scores within every region, but regional deprivation shares alone do not explain differences in overall educational attainment. These patterns could guide further government investigation into local conditions, such as school resources and access to educational opportunities, that may help explain differences between regions.

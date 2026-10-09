@@ -68,20 +68,24 @@ scientific_data <- raw_data |>
   )
 
 # 1.Box plot: Distribution of town education scores
+#| label: fig-education-boxplot
+#| fig-width: 8
+#| fig-height: 11
 scientific_data |>
   ggplot(
     aes(
       x = income_flag,
-      y = education_score
+      y = education_score,
+      fill = income_flag
     )
   ) +
   geom_boxplot(
     width = 0.55,
-    fill = "grey85",
     colour = "black",
     linewidth = 0.5,
     outlier.size = 1.5,
-    outlier.alpha = 0.6
+    outlier.alpha = 0.6,
+    show.legend = FALSE
   ) +
   facet_wrap(
     vars(rgn11nm),
@@ -94,6 +98,13 @@ scientific_data |>
       "Lower deprivation towns" = "Lower"
     ),
     drop = FALSE
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Higher deprivation towns" = "#D95F5F",
+      "Mid deprivation towns" = "#E6C84A",
+      "Lower deprivation towns" = "#4C9BD2"
+    )
   ) +
   labs(
     title = "Town educational attainment by income deprivation and region",
@@ -118,7 +129,6 @@ scientific_data |>
       hjust = 0
     )
   )
-
 # Calculate the number of towns and mean score in each group
 regional_education_summary <- scientific_data |>
   summarise(
