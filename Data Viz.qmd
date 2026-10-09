@@ -538,7 +538,7 @@ regional_education |>
   ) +
   geom_point(
     size = 3,
-    colour = "#0000E3"
+    colour = "#0072E3"
   ) +
   ggrepel::geom_text_repel(
     aes(label = rgn11nm),
