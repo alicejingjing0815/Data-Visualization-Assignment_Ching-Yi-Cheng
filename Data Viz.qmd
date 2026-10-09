@@ -34,6 +34,8 @@ This analysis uses Office for National Statistics data following state-school pu
 Office for National Statistics. (2023). Educational attainment of young people in English towns data [Data set]. https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/datasets/educationalattainmentofyoungpeopleinenglishtownsdata
 
 ## Version A: Scientific Article
+### How does educational attainment differ across deprivation categories?
+This analysis examines town educational attainment by income deprivation across eight English regions. Small, medium, and large towns are included.
 ```{r}
 #Prepare variables
 income_order <- c(
@@ -66,9 +68,6 @@ scientific_data <- raw_data |>
     )
   )
 ```
-
-### 1.Box plot
-Within all eight regions, median town education scores increase from higher to lower income deprivation categories. However, the score distributions overlap, indicating variation in educational attainment within each category.
 
 ```{r}
 #| label: fig-education-boxplot
@@ -133,8 +132,10 @@ scientific_data |>
     )
   )
 ```
+The box plots show that median education scores increase from higher through mid to lower deprivation categories in every region. Among lower-deprivation towns, the North East and North West have notably high medians. Nevertheless, overlapping distributions indicate that deprivation categories do not fully separate towns by educational attainment. Does the magnitude of the educational disparity also vary across regions?
 
-### 2.Dumbbell plot
+
+### Which region has the widest educational attainment gap?
 Lower-deprivation towns have higher mean education scores than higher-deprivation towns in every region, with each town weighted equally. The difference is largest in the North East and smallest in the South West, showing that the magnitude of the within-region disparity varies geographically.
 ```{r}
 #Calculate mean education scores within each region and category
@@ -296,9 +297,13 @@ regional_education_means |>
     )
   )
 ```
+The dumbbell plot compares mean education scores for higher- and lower-deprivation towns, weighting each town equally. Lower-deprivation towns have higher means in all eight regions. The North East has the largest difference, followed by the North West; the South West has the smallest.
+
+Thus, high attainment among lower-deprivation towns can coexist with substantial educational disparities within the same region. The South East also shows a sizeable gap, illustrating why regional averages should be interpreted alongside differences within regions.
+
+These descriptive comparisons establish neither causation nor individual-level relationships. They motivate further investigation into whether school resources and access to educational opportunities help account for the observed disparities.
 
 ## Version B: Accessible / Dynamic Outlet
-### Prepare variables
 ```{r}
 # Calculate the number of towns and mean score in each group
 regional_education_summary <- scientific_data |>
@@ -393,8 +398,9 @@ income_order <- c(
 )
 ```
 
-### 1.Table
-The North West has the most higher-deprivation towns: 93, compared with 38 in the South East. Regions contain different numbers of towns, so we next compare percentages to see where higher-deprivation towns are more common.
+### How many towns fall into each deprivation category?
+Using ONS data, we explore income deprivation and education across small, medium, and large towns in eight English regions. Higher deprivation means greater hardship linked to low income.
+
 ```{r}
 income_table <- regional_income |>
   select(
@@ -444,9 +450,9 @@ income_table |>
     columns = -rgn11nm
   )
 ```
+The table shows that the North West has the most higher-deprivation towns: 93. The South East has both the most lower-deprivation towns, 141, and the most towns overall, 214. But does having more higher-deprivation towns mean they are more common?
 
-### 2.Stacked Bar Chart
-The North East has the highest share of higher-deprivation towns, at about 77%, while Yorkshire and The Humber and the North West both have shares around 55%. These percentages compare towns rather than residents, raising the next question: do regions with larger shares also have lower average education scores?
+### Where are higher-deprivation towns most common?
 ```{r}
 regional_income |>
   mutate(
@@ -502,9 +508,10 @@ regional_income |>
     plot.title.position = "plot"
   )
 ```
+The stacked bar chart accounts for different regional totals. The North East leads with about 77% of its towns classified as higher deprivation, compared with around 55% in Yorkshire and The Humber and the North West. The South East has the lowest share, about 18%. These percentages describe towns, not residents.
 
-### 3.Scatter plot
-The North East has the highest higher-deprivation share and the lowest average town education score, but the North West and Yorkshire and The Humber have similar shares and very different scores. Regional deprivation shares therefore do not consistently track educational attainment; these comparisons describe patterns rather than establish cause and effect.
+### Do more higher-deprivation towns mean lower education scores?
+
 ```{r}
 regional_education <- data |>
   filter(
@@ -560,10 +567,13 @@ regional_education |>
   )
 
 ```
+Each point compares a region’s higher-deprivation share with its average town education score, giving every town equal weight. The North East combines the highest share with the lowest average score. Yet the North West and Yorkshire and The Humber have similar shares but very different scores.
 
-In summary, these findings highlight the importance of examining income deprivation and educational attainment both within and across regions. Higher-deprivation towns have lower average education scores within every region, but regional deprivation shares alone do not explain differences in overall educational attainment. These patterns could guide further government investigation into local conditions, such as school resources and access to educational opportunities, that may help explain differences between regions.
+The South East, North East, and North West offer contrasting examples: deprivation shares alone do not tell the whole educational story. Governments could investigate local school resources and educational opportunities to better understand these differences. These patterns do not establish cause and effect.
+
+Taken all together, these findings highlight the importance of examining income deprivation and educational attainment both within and across regions. Higher-deprivation towns have lower average education scores within every region, but regional deprivation shares do not consistently correspond to overall educational attainment. These patterns could guide further government investigation into local conditions, such as school resources and access to educational opportunities, that may help explain differences between regions.
 
 
-##### [AI Use Statement]
+#### [AI Use Statement]
 I used ChatGPT and Perplexity to help check my R code, seek guidance on adjusting figure dimensions and borders, and explore graph types suitable for the selected variables. I reviewed the suggested options and chose the visualizations I considered most appropriate for Version A and Version B. The final visualization choices and interpretations are my own.
 
